@@ -1,0 +1,58 @@
+package test.Ders10;
+
+import Utilities.ConfigReader;
+import Utilities.Driver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import pages.aloPage;
+
+import javax.swing.*;
+
+public class Ders5_SmokeNegatif {
+
+    aloPage alotech = new aloPage();
+
+    Actions actions = new Actions(Driver.getDriver());
+
+
+
+
+    @Test
+    public void wrongInfo() throws InterruptedException {
+        Driver.getDriver().get(ConfigReader.getPropty("aloURL"));
+        alotech.email.sendKeys(ConfigReader.getPropty("WrongUser"));
+        alotech.password.sendKeys(ConfigReader.getPropty("Password"));
+            Thread.sleep(2000);
+        actions.click(alotech.loginButton);
+
+        Assert.assertTrue(alotech.text.isDisplayed());
+        Driver.closeDriver();
+
+
+    }
+
+    @Test
+    public void wrongPassword() throws InterruptedException {
+        Driver.getDriver().get(ConfigReader.getPropty("aloURL"));
+        alotech.email.sendKeys(ConfigReader.getPropty("User"));
+        alotech.password.sendKeys(ConfigReader.getPropty("WrongPassword"));
+        Thread.sleep(2000);
+        actions.click(alotech.loginButton);
+
+        Assert.assertTrue(alotech.text.isDisplayed());
+        Driver.closeDriver();
+    }
+
+    @Test
+    public void wrongInfoPassword() throws InterruptedException {
+        Driver.getDriver().get(ConfigReader.getPropty("aloURL"));
+        alotech.email.sendKeys(ConfigReader.getPropty("WrongUser"));
+        alotech.password.sendKeys(ConfigReader.getPropty("WrongPassword"));
+        Thread.sleep(2000);
+        actions.click(alotech.loginButton);
+
+        Assert.assertTrue(alotech.text.isDisplayed());
+        Driver.closeDriver();
+    }
+}
