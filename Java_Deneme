@@ -1,0 +1,26 @@
+package test.Ders10;
+
+import Utilities.ConfigReader;
+import Utilities.Driver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.Test;
+import pages.bluePage;
+
+public class Ders6_Smokepozitif {
+        bluePage bluPage = new bluePage();
+
+
+
+    @Test
+    public void pozitif() throws InterruptedException {
+        Driver.getDriver().get(ConfigReader.getPropty("bluePageURL"));
+            Thread.sleep(3000);
+        bluPage.loginButton.click();
+        bluPage.email.sendKeys(ConfigReader.getPropty("brcUser"));
+        bluPage.password.sendKeys(ConfigReader.getPropty("brcPass"));
+            Thread.sleep(3000);
+            bluPage.secondLogin.click();
+
+            //test başarılı gerçekleşiyor fakat giriş yapılamadığından ötürü başarılı giriş test edilemiyor.
+    }
+}
